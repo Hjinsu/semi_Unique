@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.healthmapper">
+
+	<select id="selectList" resultType="health_dto" parameterType="String">
+
+		SELECT HEALTH_ID, HEALTH_WEIGHT, HEALTH_FOOD, HEALTH_KCAL, HEALTH_REGDATE
+		FROM HEALTH WHERE HEALTH_ID = #{health_id} order by HEALTH_REGDATE DESC
+
+	</select>
+
+	<insert id="insert" parameterType="health_dto">
+
+		INSERT INTO
+		HEALTH(HEALTH_ID, HEALTH_WEIGHT, HEALTH_FOOD, HEALTH_KCAL, HEALTH_AMOUNT, HEALTH_REGDATE)
+		SELECT #{health_id}, #{health_weight}, #{health_food},
+		#{health_kcal}, #{health_amount}, SYSDATE
+		FROM MEMBER
+		WHERE MEMBER_ID = #{health_id}
+
+	</insert>
+
+	<select id="searchList" parameterType="map" resultType="health_dto">
+		SELECT * FROM HEALTH WHERE
+		HEALTH_ID = #{health_id} AND HEALTH_REGDATE BETWEEN
+		#{health_min_date} AND #{health_max_date} ORDER BY HEALTH_REGDATE
+	</select>
+
+</mapper>

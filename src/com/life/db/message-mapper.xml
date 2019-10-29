@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.messagemapper">
+	 <select id="selectlist" resultType="message_dto">
+	 	SELECT MESSAGE_NO, MESSAGE_CONTENT, MESSAGE_SEND_ID, MESSAGE_REGDATE, MESSAGE_READ 
+	 	FROM MESSAGE
+	 	WHERE MESSAGE_RECEIVE_ID = #{message_receive_id}
+	 	ORDER BY MESSAGE_NO
+	 </select>
+	 
+	 <select id="selectone" resultType="message_dto" parameterType="map">
+	 	SELECT * FROM MESSAGE 
+	 	WHERE MESSAGE_NO = #{message_no} AND MESSAGE_RECEIVE_ID = #{message_receive_id}
+	 </select>
+	 
+	 <insert id="insert" parameterType="message_dto">
+		INSERT INTO MESSAGE(MESSAGE_NO,MESSAGE_CONTENT,MESSAGE_SEND_ID,MESSAGE_RECEIVE_ID,MESSAGE_REGDATE, MESSAGE_READ) 
+		SELECT (SELECT NVL(MAX(MESSAGE_NO),0) FROM MESSAGE WHERE MESSAGE_RECEIVE_ID = #{message_receive_id})+1, #{message_content}, #{message_send_id}, #{message_receive_id}, SYSDATE, 'N'
+		FROM MEMBER
+		WHERE MEMBER_ID = #{message_receive_id}
+	 </insert>
+	 
+	 <delete id="delete" parameterType="map">
+	 	DELETE FROM MESSAGE
+  		WHERE MESSAGE_NO = #{message_no} AND MESSAGE_RECEIVE_ID = #{message_receive_id}
+	 </delete>
+	 
+	 <delete id="muldel" parameterType="map">
+  		DELETE FROM MESSAGE
+  		WHERE MESSAGE_RECEIVE_ID IN
+		<foreach collection="message_receive_id" item="id"
+  		open="(" separator="," close=")">
+  			#{id}
+  		</foreach>
+		AND
+  		MESSAGE_NO IN
+  		<foreach collection="seqs" item="seq"
+  		open="(" separator="," close=")">
+  			#{seq}
+  		</foreach>
+  	 </delete>
+  	 
+  	 <update id="update" parameterType="map">
+  	 	UPDATE MESSAGE SET MESSAGE_READ = 'Y'
+  	 	WHERE MESSAGE_NO = #{message_no} AND MESSAGE_RECEIVE_ID = #{message_receive_id}
+  	 </update>
+ 
+</mapper>

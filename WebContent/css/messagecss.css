@@ -1,0 +1,13 @@
+#fontstyle {font-family: "fontstyle";}
+@keyframes random-bg {from {filter: hue-rotate(0);} to {filter: hue-rotate(360deg);}}
+input[type='button'] {background-color: salmon;color: white;padding: 5px;border: none;transition: all .3s ease;border-radius: 15px;
+letter-spacing: 4px;text-transform: uppercase;outline: none;align-self: center;cursor: pointer;font-weight: bold; margin-left: 4px;}
+input[type='submit'] {background-color: salmon;color: white;padding: 5px;border: none;transition: all .3s ease;border-radius: 15px;
+letter-spacing: 4px;text-transform: uppercase;outline: none;align-self: center;cursor: pointer;font-weight: bold; margin-left: 4px;}
+input[type='button']:hover {animation: random-bg .5s linear infinite, grow 1300ms ease infinite;}
+input[type='submit']:hover {animation: random-bg .5s linear infinite, grow 1300ms ease infinite;}
+.start-fun {background-color: #fff !important;color: salmon !important;}
+@keyframes grow {0% {transform: scale(1);}14% {transform: scale(1.3);}28% {transform: scale(1);}42% {transform: scale(1.3);}70% {transform: scale(1);}}
+table { width:100%; border-collapse:collapse; border:0px #ccc solid; top-margin:5px; }
+table th { padding:5px 0 5px 0; border:1px #fdfdfd  solid; border-radius: 1px; background: #eccbbb;}
+table td { padding:5px 0 5px 0; border-top:0.5px #f4e4e4 solid;  border-radius: 1px;}

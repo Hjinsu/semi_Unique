@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.weathermapper">
+	 <select id="selectOne" parameterType="int" resultType="weather_dto">
+	 	SELECT WEATHER_REH, WEATHER_T3H, WEATHER_TMN, WEATHER_TMX, WEATHER_SKY 
+	 	FROM WEATHER 
+	 	WHERE WEATHER_BOARD_NO = #{board_no_seq}
+	 </select>
+	 
+	 <insert id="insert" parameterType="weather_dto">
+	 	INSERT INTO WEATHER VALUES(WEATHER_SEQ.NEXTVAL,
+	 						   #{weather_reh}, #{weather_t3h}, #{weather_tmn}, #{weather_tmx}, #{weather_sky})
+	 </insert>
+	 
+	 <update id="update" parameterType="weather_dto">
+	 	UPDATE WEATHER SET WEATHER_REH = #{weather_reh}, WEATHER_T3H = #{weather_t3h},
+	 					   WEATHER_TMN = #{weather_tmn}, WEATHER_TMX= #{weather_tmx},
+	 					   WEATHER_SKY = #{weather_sky}
+	 					   WHERE WEATHER_BOARD_NO = #{weather_board_no}
+	 </update>
+	 
+	 <delete id="delete" parameterType="int">
+	 	DELETE FROM WEATHER WHERE WEATHER_BOARD_NO = #{board_no_seq}  
+	 </delete>
+</mapper>

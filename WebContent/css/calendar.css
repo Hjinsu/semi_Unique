@@ -1,0 +1,45 @@
+
+        #calendar{
+            border-collapse: collapse;
+            border: 1px solid gray;
+        }
+        #calendar th{
+            width: 80px;
+            border: 1px solid gray;
+        }
+        #calendar td{
+            width: 80px;
+            height: 80px;
+            border: 1px solid gray;
+            text-align: left;
+            vertical-align: top;
+            position: relative;
+            background-color: white;
+        }
+        .nextcal{
+        	color: #b4b0b0;
+        }
+        .week{
+        	background : skyblue;
+        }
+        tbody td:hover{
+        	background-image: url("img/aaa.jpg");
+        	background-size: 100%;
+        }
+        .clist{
+        	font-family:"wrap";
+        	font-size: 5px;
+        	margin : 1px;
+        	background-color: rgba(243, 162, 250,0.5);
+        }
+        .cPreview{
+        	position: absolute;
+        	top: -30px;
+        	left : 10px;
+        	background-color: pink;
+        	width : 40px;
+        	height : 40px;
+        	text-align: center;
+        	line-height: 40px;
+        	border-radius: 40px 40px 40px 1px;
+        }

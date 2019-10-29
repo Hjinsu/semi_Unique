@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.mapmapper">
+	 
+	  <select id="selectOne" parameterType="int" resultType="map_dto">
+	 SELECT MAP_NO_SEQ, MAP_PLACE, MAP_LATITUDE, MAP_LONGITUDE FROM MAP WHERE MAP_NO_SEQ = #{map_no_seq}
+	 </select>
+	 
+	 <insert id="insert" parameterType="map_dto">
+	 INSERT INTO MAP VALUES(MAP_SEQ.NEXTVAL,
+	 #{map_place},#{map_latitude},#{map_longitude})
+	 </insert>
+	 
+	 <update id="update" parameterType="map_dto">
+	 UPDATE MAP SET MAP_PLACE = #{map_place} , MAP_LATITUDE = #{map_latitude} ,MAP_LONGITUDE = #{map_longitude} WHERE MAP_NO_SEQ= #{map_no_seq}
+	 </update>
+	 
+	 <delete id="delete" parameterType="int">
+	 DELETE FROM MAP WHERE MAP_NO_SEQ = #{map_no_seq}  
+	 </delete>
+	 
+</mapper>

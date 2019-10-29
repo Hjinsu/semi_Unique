@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.schedulemapper">
+	 <select id="selectthreelist" resultType="schedule_dto">
+	 	SELECT * FROM(SELECT (ROW_NUMBER() OVER(PARTITION BY SUBSTR(SCHEDULE_DATE,1,8) ORDER BY SCHEDULE_DATE)) RN,
+	 	SCHEDULE_NO, SCHEDULE_ID, SCHEDULE_TITLE, SCHEDULE_CONTENT, SCHEDULE_DATE, SCHEDULE_REGDATE, SCHEDULE_BOARD_NO
+	 	FROM SCHEDULE
+	 	WHERE SCHEDULE_ID = #{id}
+	 	AND SUBSTR(SCHEDULE_DATE,1,6) = #{mdate})
+	 	WHERE RN BETWEEN 1 AND 3
+	 </select>
+	 
+	 <select id="selectcount" resultType="int">
+	 	SELECT COUNT(SCHEDULE_TITLE) FROM SCHEDULE WHERE SCHEDULE_ID = #{id} AND SUBSTR(SCHEDULE_DATE, 0,8) = #{mdate}
+	 </select>
+	 
+	 <select id="selectone" resultType="schedule_dto" parameterType="map">
+	 	SELECT * FROM SCHEDULE WHERE SCHEDULE_NO = #{schedule_no} AND SCHEDULE_ID = #{schedule_id}		
+	 </select>
+	 	
+	 <select id="selectlist" resultType="schedule_dto">
+	 	SELECT * FROM SCHEDULE WHERE SCHEDULE_ID = #{id} AND SUBSTR(SCHEDULE_DATE, 0,8) = #{mdate}
+	 </select>
+	 
+	 <insert id="insert" parameterType="schedule_dto">
+	 	INSERT INTO SCHEDULE(SCHEDULE_NO, SCHEDULE_ID, SCHEDULE_TITLE, SCHEDULE_CONTENT, SCHEDULE_DATE, SCHEDULE_REGDATE)
+	 	VALUES(SCHEDULE_SEQ.NEXTVAL, #{schedule_id}, #{schedule_title}, #{schedule_content}, #{schedule_date}, SYSDATE)
+	 </insert>
+	 
+	 <update id="update" parameterType="schedule_dto">
+	 	UPDATE SCHEDULE SET SCHEDULE_TITLE = #{schedule_title}, SCHEDULE_CONTENT = #{schedule_content}, SCHEDULE_DATE = #{schedule_date} 
+	 	WHERE SCHEDULE_NO = #{schedule_no} AND SCHEDULE_ID = #{schedule_id}
+	 </update>
+	 
+	 <delete id="del" parameterType="map">
+	 	DELETE FROM SCHEDULE
+  		WHERE SCHEDULE_NO = #{schedule_no} AND SCHEDULE_ID = #{schedule_id}
+	 </delete>
+	 
+	 <delete id="muldel" parameterType="map">
+  		DELETE FROM SCHEDULE
+  		WHERE SCHEDULE_NO IN
+  		<foreach collection="seqs" item="seq"
+  		open="(" separator="," close=")">
+  			#{seq}
+  		</foreach>
+  		AND SCHEDULE_ID = #{schedule_id}
+  	 </delete>
+  	 
+  	 <insert id="insertboard" parameterType="map">
+  	 	INSERT INTO 
+  	 	SCHEDULE(SCHEDULE_NO, SCHEDULE_ID, SCHEDULE_TITLE, SCHEDULE_CONTENT, SCHEDULE_DATE, SCHEDULE_REGDATE, SCHEDULE_BOARD_NO)
+		SELECT SCHEDULE_SEQ.NEXTVAL, #{schedule_id}, BOARD_TITLE, BOARD_CONTENT, TO_CHAR(BOARD_TIMELIMIT,'yyyymmddhh24mi'), SYSDATE, BOARD_NO_SEQ
+		FROM BOARD WHERE  BOARD_NO_SEQ = #{board_no_seq}
+  	 </insert>
+</mapper>

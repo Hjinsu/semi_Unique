@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.accountmapper">
+
+	<select id="selectList" resultType="account_dto">
+
+		SELECT
+		ACCOUNT_ID,ACCOUNT_IO_NO, ACCOUNT_DATE, ACCOUNT_IN_CASH,
+		ACCOUNT_OUT_CASH, ACCOUNT_IO_CONTENT, ACCOUNT_TOTALCASH FROM ACCOUNT
+		WHERE ACCOUNT_ID = #{account_id} ORDER BY ACCOUNT_IO_NO DESC
+
+	</select>
+
+	<insert id="insert" parameterType="account_dto">
+		INSERT INTO
+		ACCOUNT (ACCOUNT_ID, ACCOUNT_IO_NO, ACCOUNT_DATE, ACCOUNT_DAYS, ACCOUNT_IN_CASH, ACCOUNT_OUT_CASH, ACCOUNT_IO_CONTENT,
+		ACCOUNT_TOTALCASH)
+		SELECT #{account_id}, (SELECT
+		NVL(MAX(ACCOUNT_IO_NO),0) FROM ACCOUNT WHERE
+		ACCOUNT_ID =
+		#{account_id})+1, SYSDATE, (SELECT TO_CHAR(SYSDATE, 'dy') FROM DUAL),
+		#{account_in_cash}, #{account_out_cash}, #{account_io_content},
+		#{account_totalcash}
+		FROM MEMBER
+		WHERE MEMBER_ID = #{account_id}
+
+	</insert>
+
+	<update id="update" parameterType="account_dto">
+
+		UPDATE ACCOUNT SET
+		ACCOUNT_IN_CASH = ACCOUNT_IN_CASH = #{account_in_cash},
+		ACCOUNT_OUT_CASH =
+		#{account_out_cash}, ACCOUNT_IO_CONTENT =
+		#{account_io_content},
+		ACCOUNT_TOTALCASH = #{account_totalcash}
+		WHERE
+		ACCOUNT_ID = #{account_id} AND ACCOUNT_IO_NO = #{account_io_no}
+
+	</update>
+
+	<delete id="delete" parameterType="account_dto">
+
+		DELETE FROM ACCOUNT
+		WHERE
+		ACCOUNT_IO_NO = #{account_io_no} AND ACCOUNT_ID = #{account_id}
+
+	</delete>
+
+	<select id="selecttotalcash" resultType="String"
+		parameterType="map">
+		SELECT ACCOUNT_TOTALCASH FROM
+		(SELECT S.ACCOUNT_TOTALCASH, ROWNUM AS
+		TOTAL
+		FROM (SELECT ACCOUNT_TOTALCASH FROM ACCOUNT WHERE ACCOUNT_ID =
+		#{account_id} ORDER BY ACCOUNT_IO_NO DESC) S)
+		WHERE TOTAL = 1
+	</select>
+
+	<select id="searchList" parameterType="map" resultType="account_dto">
+		SELECT * FROM ACCOUNT WHERE
+		ACCOUNT_ID = #{account_id} AND ACCOUNT_DATE BETWEEN
+		#{account_min_date} AND #{account_max_date} ORDER BY ACCOUNT_DATE
+	</select>
+
+</mapper>

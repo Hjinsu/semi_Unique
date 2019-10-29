@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.boardmapper">
+
+	<select id="selectlist" resultType="board_dto" parameterType="map">
+	
+		SELECT * FROM BOARD
+		
+		<choose>
+			<when test="board_title != null">
+				WHERE BOARD_TITLE LIKE '%'||#{board_title}||'%' AND BOARD_DEL = 'N'
+			</when>
+			<when test="board_content != null">
+				WHERE BOARD_CONTENT LIKE '%'||#{board_content}||'%' AND BOARD_DEL = 'N'
+			</when>
+			<when test="board_titlecontent != null">
+				WHERE BOARD_CONTENT LIKE '%'||#{board_titlecontent}||'%' OR BAORD_TITLE LIKE '%'||#{board_titlecontent}||'%' AND BOARD_DEL = 'N'
+			</when>
+			<when test="board_writer != null">
+				WHERE BOARD_WRITER LIKE '%'||#{board_writer}||'%' AND BOARD_DEL = 'N'
+			</when>
+			<when test="board_tag != null">
+				WHERE BOARD_TAG LIKE '%'||#{board_tag}||'%' AND BOARD_DEL = 'N'
+			</when>
+			<otherwise>
+						
+			</otherwise>
+		</choose>
+		ORDER BY BOARD_GROUPNO_SEQ DESC, BOARD_GROUP_ORDER
+	
+	</select>
+
+	
+	<select id="selectone" parameterType="int" resultType="board_dto">
+	SELECT * FROM BOARD
+	WHERE BOARD_NO_SEQ = #{board_no_seq}
+	
+	</select>
+	
+	<update id="update" parameterType = "board_dto">
+
+	UPDATE BOARD 
+	SET BOARD_TITLE =#{board_title}, BOARD_CONTENT=#{board_content}, BOARD_LOCATION =#{board_location}, BOARD_TAG =#{board_tag}
+	WHERE BOARD_NO_SEQ =#{board_no_seq}
+	
+	</update>
+	
+	<update id="delete" parameterType="int">
+	
+	UPDATE BOARD 
+	SET BOARD_DEL='Y' 
+	WHERE BOARD_NO_SEQ=#{board_no_seq}	
+	
+	</update>
+	
+	<insert id="insert" parameterType="board_dto">
+	
+	INSERT INTO BOARD VALUES
+	(BOARD_SEQ.NEXTVAL, 
+	BOARDGROUP_SEQ.NEXTVAL, 
+	1,
+	0,
+	#{board_writer},
+	#{board_title},
+	#{board_content},
+	SYSDATE,
+	#{board_location},
+	0,
+	#{board_tag},
+	#{board_genderlimit},
+	#{board_age_min},
+	#{board_age_max},
+	#{board_peoplelimit},
+	#{board_timelimit},
+	'N',
+	'')
+	
+	</insert>
+	
+	<update id="viewnum" parameterType="board_dto">
+	
+	UPDATE BOARD 
+	SET BOARD_VIEWNUM=#{board_viewnum}+1
+	WHERE BOARD_NO_SEQ =#{board_no_seq}
+	
+	</update>
+	
+	
+	
+	<insert id="insertAS" parameterType="board_dto">
+	
+	INSERT INTO BOARD VALUES
+	(BOARD_SEQ.NEXTVAL, 
+	(SELECT BOARD_GROUPNO_SEQ FROM BOARD WHERE BOARD_NO_SEQ=#{board_no_seq}), 
+	(SELECT BOARD_GROUP_ORDER FROM BOARD WHERE BOARD_NO_SEQ=#{board_no_seq})+1,
+	(SELECT BOARD_TAB FROM BOARD WHERE BOARD_NO_SEQ = #{board_no_seq})+1,
+	#{board_writer},
+	#{board_title},
+	#{board_content},
+	SYSDATE,
+	#{board_location},
+	0,
+	#{board_tag},
+	#{board_genderlimit},
+	#{board_age_min},
+	#{board_age_max},
+	#{board_peoplelimit},
+	TO_DATE(#{board_timelimit},'YYYY-MM-DD HH24:MI'),
+	'N')
+	
+	</insert>
+	
+	<update id="updateAS" parameterType="int">
+	
+	UPDATE BOARD SET BOARD_GROUP_ORDER = BOARD_GROUP_ORDER+1
+	WHERE BOARD_GROUP_ORDER > (SELECT BOARD_GROUP_ORDER FROM BOARD WHERE BOARD_NO_SEQ=#{board_no_seq}) 
+	
+	</update>
+	
+	<select id="selectlist_comment" resultType="comment_dto" parameterType="int">
+	
+		SELECT * 
+		FROM COMMENT_TABLE 
+		WHERE COMMENT_BOARD_NO = #{board_no_seq}
+		ORDER BY COMMENT_NO_SEQ DESC
+	
+	</select>
+	
+	<insert id="insert_comment" parameterType="comment_dto">
+		INSERT INTO COMMENT_TABLE
+		VALUES (COMMENT_SEQ.NEXTVAL, 
+		COMMENTGROUP_SEQ.NEXTVAL, 
+		1,
+		#{comment_board_no},
+		#{comment_writer},
+		#{comment_content},
+		SYSDATE)
+	</insert>
+	
+	<delete id="delete_comment" parameterType="map">
+		
+		DELETE FROM 
+		COMMENT_TABLE 
+		WHERE COMMENT_NO_SEQ = #{comment_no_seq} AND COMMENT_WRITER = #{member_id}
+	
+	</delete>
+	
+	<update id="attenduser" parameterType="map">
+		<![CDATA[
+		UPDATE BOARD SET BOARD_ATTEND_USER = #{attend_user} 
+		WHERE BOARD_NO_SEQ = #{board_no_seq} 
+		]]>
+	</update>
+	
+	<select id="attendselect" parameterType="int" resultType="String">
+		
+		SELECT BOARD_ATTEND_USER FROM BOARD
+		WHERE BOARD_NO_SEQ = #{board_no_seq} 
+		
+	</select>
+	
+	<select id="curselect" resultType="int">
+		SELECT BOARD_NO_SEQ FROM BOARD
+		WHERE BOARD_NO_SEQ = BOARD_SEQ.CURRVAL
+	</select>
+	
+</mapper>

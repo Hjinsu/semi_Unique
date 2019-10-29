@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.statisticsmapper">
+
+   <insert id="insert" parameterType="statistics_dto">
+   
+     INSERT INTO STATISTICS
+     VALUES(#{statistics_id},#{statistic_calorie},#{statistics_spend})
+   
+   </insert>
+   
+   <select id="selectList" resultType="statistics_dto">
+   SELECT * FROM STATISTICS OREDER BY STATISTICS_DATE DESC
+   
+   </select>
+</mapper>

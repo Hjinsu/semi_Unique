@@ -1,0 +1,255 @@
+ *{ padding: 0; margin: 0; }
+        html{height: 80%;}
+        body{background: #c4e9f8; overflow: hidden; }
+        #wrap {width: 100%; margin: 0 auto; font-family: "wrap"; }    
+        #wrap header { width: 100%; height: 80%;}
+        #wrap header #backimg img {width: 100%; margin: 17.5% 0 0 0; z-index: 1;}
+        #wrap header #cloud #cloud1{width:20%; top: 25%; right: -25%; z-index: 2; position: absolute; animation: move infinite linear 25s}
+        #wrap header #cloud #cloud2{width:15%; top: 40%; right: -40%; z-index: 2; position: absolute; animation: move infinite linear 35s}
+        #wrap header #cloud #cloud3{width:10%; top: 10%; right: -35%; z-index: 2; position: absolute; animation: move infinite linear 25s}
+        #wrap header #cloud #cloud4{width:20%; top: 30%; right: -50%; z-index: 2; position: absolute; animation: move infinite linear 45s}
+        #wrap header #cloud #cloud5{width:15%; top: 20%; right: -40%; z-index: 2; position: absolute; animation: move infinite linear 35s}
+        #wrap header #cloud #cloud6{width:20%; top: 15%; right: -60%; z-index: 2; position: absolute; animation: move infinite linear 50s}
+        #wrap header #sun img{ width: 10%; position: absolute; right: 43%; top: 10%; animation: circle infinite linear 10s}
+
+        #wrap footer .menubar #menu1 { margin-left :60%;width: 40%;  background-color: rgb(255, 0, 0); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none;border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative;  float:  right;
+        }
+        #wrap footer .menubar #menu1:hover{width: 400px; color: rgb(255, 251, 0);  letter-spacing:20px;}
+
+        #wrap footer .menubar #menu2 {margin-left :60%;width: 40%;background-color: rgb(251, 255, 0); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none;border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative; float:  right; 
+        }
+        #wrap footer .menubar #menu2:hover{width: 450px; color: rgb(255, 0, 0);  letter-spacing:20px;}
+        #wrap footer .menubar #menu3 {margin-left :60%;width: 40%;background-color: rgb(0, 255, 98); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none;border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative; float:  right; 
+        }
+        #wrap footer .menubar #menu3:hover{width: 500px; color: rgb(25, 0, 255);  letter-spacing:20px;}
+        #wrap footer .menubar #menu4 {margin-left :60%;width: 40%;background-color: rgb(247, 0, 255); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none;border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative; float:  right; 
+        }
+        #wrap footer .menubar #menu4:hover{width: 550px; color: rgb(255, 145, 0);  letter-spacing:20px;}
+        #wrap footer .menubar #menu5 {margin-left :60%;width: 40%;color: rgb(0, 0, 0); background-color: rgb(17, 0, 255); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none;border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative; float:  right; 
+        }
+        #wrap footer .menubar #menu5:hover{width: 600px; color: rgb(0, 0, 0);  letter-spacing:20px;}
+
+        #wrap footer .menubar #menu6 {margin-left :60%;width: 40%;background-color: rgb(255, 153, 0); margin-bottom: 1px; font-size: 30pt; 
+            font-weight: bold; list-style-type: none; border-radius: 40px 0 0 40px;
+            transition: width 1s linear, color 1s linear, letter-spacing 1s; cursor: pointer; text-align: right; 
+            position: relative; float:  right; 
+        }
+        #wrap footer .menubar #menu6:hover{width: 650px; color: rgb(44, 255, 16);  letter-spacing:5px;}
+
+        input[id="footericon"] {display: none;}
+        input[id="footericon2"] {display: none;}
+
+        input[id="footericon"]+label {display: block;width: 50px;height: 25px;position: relative;cursor: pointer;}
+        input[id="footericon2"]+label {display: block;width: 50px;height: 25px;position: relative;cursor: pointer;}
+
+        input[id="footericon"]+label {display: block;width: 50px;height: 25px;position: relative;cursor: pointer;}
+        input[id="footericon2"]+label {display: block;width: 50px;height: 25px;position: relative;cursor: pointer;}
+
+        input[id="footericon"]+label span {display: block;position: absolute;width: 90%;height: 5px;border-radius: 30px;
+        background: #fff;transition: all .35s;}
+        input[id="footericon2"]+label span {display: block;position: absolute;width: 90%;height: 5px;border-radius: 30px;
+        background: #fff;transition: all .35s;}
+
+        input[id="footericon"]+label span:nth-child(1) {top: 0;}
+        input[id="footericon2"]+label span:nth-child(1) {top: 0;}
+
+        input[id="footericon"]+label span:nth-child(2) {top: 50%;transform: translateY(-50%);}
+        input[id="footericon2"]+label span:nth-child(2) {top: 50%;transform: translateY(-50%);}
+
+        input[id="footericon"]+label span:nth-child(3) {bottom: 0;}
+        input[id="footericon2"]+label span:nth-child(3) {bottom: 0;}
+
+        input[id="footericon"]:checked+label {z-index: 11;}
+        input[id="footericon2"]:checked+label {z-index: 11;}
+
+        input[id="footericon"]:checked+label span {background: #fff;}
+        input[id="footericon2"]:checked+label span {background: #fff;}
+
+        input[id="footericon"]:checked+label span:nth-child(1) {top: 50%;transform: translateY(-50%) rotate(45deg);}
+        input[id="footericon2"]:checked+label span:nth-child(1) {top: 50%;transform: translateY(-50%) rotate(45deg);}
+
+        input[id="footericon"]:checked+label span:nth-child(2) {opacity: 0;}
+        input[id="footericon2"]:checked+label span:nth-child(2) {opacity: 0;}
+
+        input[id="footericon"]:checked+label span:nth-child(3) {bottom: 50%;transform: translateY(50%) rotate(-45deg);}
+        input[id="footericon2"]:checked+label span:nth-child(3) {bottom: 50%;transform: translateY(50%) rotate(-45deg);}
+    div[class="footer"] {
+        width: 50%; height: 50%; background:linear-gradient(120deg, #03a9f4, #ffeb3b, #f441a5, #03a9f4 ); position: fixed; top: 50%; left: -50%;
+        z-index: 10; transition: all .35s; border-radius: 0 300px 0 0 ; opacity: 0.7; 
+    }
+    div[class="footer"] h1 { margin-left: 20px;}
+    div[class="footer"] h3 {margin-left: 20px;}
+    div[class="menubar"] {
+        width: 50%; height: 50%; background: linear-gradient(120deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4 ); position: fixed; top:50%; right: -50%;
+        z-index: 10; transition: all .35s; border-radius: 300px 0 0 0 ; opacity: 0.7;
+    }
+    input[id="footericon"]:checked + label + div {left: 0%;}
+    input[id="footericon2"]:checked + label + div {right: 0%;}
+    .car {
+        position: absolute;right: -30%;top: 75
+        %;animation: move infinite linear 10s;
+    }
+    .car:hover{
+        animation-play-state: paused;
+    }
+    .car:hover .circle{
+        animation-play-state: paused;
+    }
+    @keyframes move {
+        100% {right: 120%;}
+    }
+   
+
+    
+    .car img {
+        position: relative;z-index: 10;animation: car infinite 1s;
+    }
+    @keyframes car {
+        50% {transform: translateY(-3.5px)}
+    }
+    .car .circle {
+        position: absolute;width: 71px; height: 71px; border-radius: 100%; border: 10px solid black;
+        box-sizing: border-box; animation: circle infinite linear 1s;
+    }
+    .car .circle:first-of-type {
+        left: 55px; top: 85px;
+    }
+
+    .car .circle:last-of-type {
+    right: 65px; top: 85px;
+    }
+
+    .car .circle:before {
+    content: "";position: absolute;left: 50%;height: 53%; top: 50%;transform: translate(-50%, -50%);
+    width: 84%;height: 84%;border-radius: 100%;background: black;z-index: 3;
+    }
+
+    .car .circle i {
+        position: absolute;
+        background: black;
+        border: 20px;
+        padding: 1.2px;
+    }
+
+    .car .circle i:nth-child(1) {
+        left: 0;
+        top: 49%;
+        width: 100%;
+        height: 1px;
+        transform: rotate(90deg);
+    }
+
+    .car .circle i:nth-child(2) {
+        left: 48%;
+        top: 0;
+        width: 1.2px;
+        height: 100%;
+        transform: rotate(-60deg);
+    }
+
+    .car .circle i:nth-child(3) {
+        left: 48%;
+        top: 0;
+        width: 1.2px;
+        height: 100%;
+        transform: rotate(60deg);
+    }
+
+    @keyframes circle {
+        0% {
+            transform: rotate(0deg)
+        }
+        100% {
+            transform: rotate(-360deg)
+        }
+    }
+
+    .smoke span {
+        position: absolute;
+        right: -50px;
+        top: 100px;
+    }
+
+    .car .smoke span {
+        position: absolute;
+        width: 80px;
+        height: 60px;
+        border-radius: 100%;
+        background: gray;
+        animation: smoke infinite 1s;
+    }
+
+    .car .smoke span:nth-child(1) {
+        animation-delay: 0;
+    }
+
+    .car .smoke span:nth-child(2) {
+        animation-delay: 0.7s;
+    }
+
+    .car .smoke span:nth-child(3) {
+        animation-delay: 1.4s;
+    }
+
+    @keyframes smoke {
+        0% {
+            transform: scale(0)translateX(0px);
+            opacity: 0;
+            filter: blur(0);
+        }
+
+        30% {
+            opacity: .6;
+            transform: scale(1) translateX(50px);
+        }
+
+        70% {
+            opacity: .6;
+        }
+
+        100% {
+            transform: scale(1) translateX(150px);
+            opacity: 0;
+            filter: blur(15px);
+        }
+    }
+
+    
+
+     /* 화면 너비 0~ 1200px */
+     @media (max-width: 2000px){
+            #wrap{width: 100%;  }
+            #wrap header #backimg img {width: 100%;  margin: 15% 0 0 0; }
+            .car {position: absolute;right: -30%;top: 70%;animation: move infinite linear 10s;}
+            
+        }
+        /* 화면 너비 0~ 1200px */
+         @media (max-width: 1200px){
+         
+          .car {position: absolute;right: -30%;top: 72%;animation: move infinite linear 10s;}
+         }
+                
+        /* 화면 너비 0~ 480px */
+        @media (max-width: 480px){
+        
+            #wrap{width: 100%; height: 90%; }
+            #wrap header { height: 80%; background-size:cover; }
+            #wrap header #backimg img {width: 100%; top: 200%;}
+            .car {display: none;}
+         	
+        }

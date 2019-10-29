@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<properties resource="com/life/db/db.properties"></properties>
+	<typeAliases>
+		<typeAlias type="com.life.dto.account_dto" alias="account_dto"/>
+		<typeAlias type="com.life.dto.basket_dto" alias="basket_dto"/>
+		<typeAlias type="com.life.dto.board_dto" alias="board_dto"/>
+		<typeAlias type="com.life.dto.comment_dto" alias="comment_dto"/>
+		<typeAlias type="com.life.dto.friend_dto" alias="friend_dto"/>
+		<typeAlias type="com.life.dto.health_dto" alias="health_dto"/>
+		<typeAlias type="com.life.dto.map_dto" alias="map_dto"/>
+		<typeAlias type="com.life.dto.member_dto" alias="member_dto"/>
+		<typeAlias type="com.life.dto.message_dto" alias="message_dto"/>
+		<typeAlias type="com.life.dto.schedule_dto" alias="schedule_dto"/>
+		<typeAlias type="com.life.dto.statistics_dto" alias="statistics_dto"/>
+		<typeAlias type="com.life.dto.weather_dto" alias="weather_dto"/>
+	</typeAliases>
+  <environments default="development">
+    <environment id="development">
+      <transactionManager type="JDBC"/>
+      <dataSource type="POOLED">
+        <property name="driver" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+      </dataSource>
+    </environment>
+  </environments>
+  <mappers>
+    <mapper resource="com/life/db/member-mapper.xml"/>
+    <mapper resource="com/life/db/friend-mapper.xml"/>
+    <mapper resource="com/life/db/account-mapper.xml"/>
+    <mapper resource="com/life/db/board-mapper.xml"/>
+    <mapper resource="com/life/db/comment-mapper.xml"/>
+    <mapper resource="com/life/db/map-mapper.xml"/>
+    <mapper resource="com/life/db/health-mapper.xml"/>
+    <mapper resource="com/life/db/basket-mapper.xml"/>
+    <mapper resource="com/life/db/schedule-mapper.xml"/>
+    <mapper resource="com/life/db/statistics-mapper.xml"/>
+    <mapper resource="com/life/db/message-mapper.xml"/>
+    <mapper resource="com/life/db/weather-mapper.xml"/>
+  </mappers>
+</configuration>

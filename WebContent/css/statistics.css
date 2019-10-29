@@ -1,0 +1,67 @@
+/*
+.chart rect {
+  fill: steelblue;
+}
+*/
+#chart1{
+	float: left;
+	padding: 0px 10px;
+}
+#chart2{
+	padding: 0px 10px;
+}
+#chart1 .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+
+#chart1 text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+  position: relative;
+}
+
+#chart1 .label {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+
+#chart2 .legend {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: start;
+  font-size: 12px;
+}
+
+#chart2 text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+  position: relative;
+}
+
+#chart2 .label {
+  fill: black;
+  font: 14px sans-serif;
+  text-anchor: end;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.liquidFillGaugeText { font-family: Helvetica; font-weight: bold; }
+#fillgauge1{
+	float: left;
+}

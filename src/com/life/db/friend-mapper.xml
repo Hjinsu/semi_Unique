@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.life.db.friendmapper">
+	<insert id="addfriend01" parameterType="map">
+		INSERT INTO
+		FRIEND(FRIEND_MY_ID,FRIEND_FRIEND_ID01)
+		SELECT #{member_id}, #{friend_id}
+		FROM MEMBER
+		WHERE MEMBER_ID = #{member_id}
+	</insert>
+
+	<update id="addfriend02" parameterType="map">
+		UPDATE FRIEND SET
+		FRIEND_FRIEND_ID02 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend03" parameterType="map">
+		UPDATE FRIEND SET
+		FRIEND_FRIEND_ID03 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend04" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID04 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend05" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID05 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend06" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID06 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend07" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID07 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend08" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID08 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend09" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID09 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+	<update id="addfriend10" parameterType="map">
+		UPDATE FRIEND SET FRIEND_FRIEND_ID10 = #{friend_id}
+		WHERE FRIEND_MY_ID = #{member_id}
+	</update>
+
+	<select id="selectfriend01" resultType="String">
+		SELECT FRIEND_FRIEND_ID01 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend02" resultType="String">
+		SELECT FRIEND_FRIEND_ID02 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend03" resultType="String">
+		SELECT FRIEND_FRIEND_ID03 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select> 
+	<select id="selectfriend04" resultType="String">
+		SELECT FRIEND_FRIEND_ID04 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend05" resultType="String">
+		SELECT FRIEND_FRIEND_ID05 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend06" resultType="String">
+		SELECT FRIEND_FRIEND_ID06 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend07" resultType="String">
+		SELECT FRIEND_FRIEND_ID07 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend08" resultType="String">
+		SELECT FRIEND_FRIEND_ID08 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend09" resultType="String">
+		SELECT FRIEND_FRIEND_ID09 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	<select id="selectfriend10" resultType="String">
+		SELECT FRIEND_FRIEND_ID10 FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+	
+	<select id="selectfriendall" resultType="friend_dto">
+		SELECT * FROM FRIEND WHERE FRIEND_MY_ID = #{member_id}
+	</select>
+
+	<delete id="del_friend01" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID01 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend02" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID02 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend03" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID03 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend04" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID04 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend05" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID05 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend06" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID06 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend07" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID07 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend08" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID08 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend09" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID09 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+	<delete id="del_friend10" parameterType="map">
+		DELETE FROM FRIEND 
+		WHERE FRIEND_FRIEND_ID10 = #{friend_id} 
+		AND FRIEND_MY_ID = #{member_id}
+	</delete>
+</mapper>
